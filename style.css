@@ -912,6 +912,7 @@ html, body {
 }
 
 /* Single Card Frame */
+/* Single Card Frame */
 .invitation-card {
   position: absolute;
   inset: 0;
@@ -920,9 +921,9 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  padding: clamp(24px, 8cqw, 38px) clamp(8px, 2.6cqw, 14px) clamp(16px, 5cqw, 24px);
+  padding: clamp(44px, 13cqw, 60px) clamp(8px, 2.6cqw, 14px) clamp(16px, 5cqw, 24px);
   opacity: 0;
   transform: translateY(30px);
   pointer-events: none;
@@ -932,12 +933,10 @@ html, body {
   scrollbar-width: none;
 }
 
-/* Cards with scrollable lists or forms align to top so titles are never cut off */
-.invitation-card[data-card="3"],
-.invitation-card[data-card="4"],
-.invitation-card[data-card="7"] {
-  justify-content: flex-start;
-  padding-top: clamp(24px, 7.8cqw, 36px);
+/* Card 0 (Cover / Hero) has balanced vertical centering */
+.invitation-card[data-card="0"] {
+  justify-content: center;
+  padding: clamp(30px, 9cqw, 42px) clamp(8px, 2.6cqw, 14px) clamp(16px, 5cqw, 24px);
 }
 
 .invitation-card::-webkit-scrollbar {
@@ -963,18 +962,19 @@ html, body {
 /* Card Typography & Elements */
 .card-script-title {
   font-family: var(--font-script);
-  font-size: clamp(26px, 7.8cqw, 36px);
+  font-size: clamp(23px, 6.8cqw, 31px);
   color: var(--crimson-accent);
   line-height: 1.15;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .card-subtitle {
   font-family: var(--font-serif);
-  font-size: clamp(13px, 3.8cqw, 16px);
+  font-size: clamp(11.5px, 3.3cqw, 14px);
   font-style: italic;
   color: var(--text-muted);
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  line-height: 1.25;
 }
 
 .gold-divider {
@@ -983,7 +983,7 @@ html, body {
   justify-content: center;
   gap: 8px;
   width: 60%;
-  margin: 6px auto 10px;
+  margin: 4px auto 6px;
 }
 
 .divider-line {
@@ -1376,12 +1376,30 @@ html, body {
    ========================================= */
 .story-scroll-container {
   width: 100%;
-  max-height: 70%;
+  max-height: calc(100% - 92px);
   overflow-y: auto;
-  padding: 0 4px;
+  overflow-x: hidden;
+  padding: 2px 4px 10px 4px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197, 155, 39, 0.45) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.story-scroll-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.story-scroll-container::-webkit-scrollbar-track {
+  background: rgba(197, 155, 39, 0.08);
+  border-radius: 4px;
+}
+
+.story-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(197, 155, 39, 0.4);
+  border-radius: 4px;
 }
 
 .story-item {
@@ -1389,10 +1407,12 @@ html, body {
   gap: 8px;
   align-items: flex-start;
   text-align: left;
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(197, 155, 39, 0.25);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(197, 155, 39, 0.32);
   border-radius: 10px;
-  padding: 8px;
+  padding: 7px 8px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(123, 45, 62, 0.06);
 }
 
 .story-thumb {
@@ -1580,18 +1600,18 @@ html, body {
   max-width: 240px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
   text-align: left;
 }
 
 .rsvp-input, .rsvp-select, .rsvp-textarea {
   width: 100%;
-  padding: 6px 10px;
+  padding: 4px 8px;
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(197, 155, 39, 0.4);
   border-radius: 6px;
   font-family: var(--font-serif);
-  font-size: clamp(11px, 3.4cqw, 13px);
+  font-size: clamp(10.5px, 3.1cqw, 12.5px);
   color: #2b1d14;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -1604,18 +1624,18 @@ html, body {
 
 .rsvp-label {
   font-family: var(--font-sans);
-  font-size: clamp(8.5px, 2.5cqw, 10px);
+  font-size: clamp(8px, 2.3cqw, 9.5px);
   font-weight: 600;
   color: #6d5b52;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   display: block;
 }
 
 .rsvp-radio-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin: 2px 0;
+  gap: 3px;
+  margin: 1px 0;
 }
 
 .rsvp-radio-label {
@@ -1623,7 +1643,7 @@ html, body {
   align-items: center;
   gap: 6px;
   font-family: var(--font-sans);
-  font-size: clamp(9px, 2.6cqw, 11px);
+  font-size: clamp(8.5px, 2.4cqw, 10px);
   color: #3b2c24;
   cursor: pointer;
 }
@@ -1633,9 +1653,9 @@ html, body {
   align-items: flex-start;
   gap: 6px;
   font-family: var(--font-sans);
-  font-size: clamp(8px, 2.4cqw, 9.5px);
+  font-size: clamp(7.5px, 2.2cqw, 9px);
   color: #6d5b52;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 .rsvp-terms-link {
@@ -1645,13 +1665,13 @@ html, body {
 
 .rsvp-submit-btn {
   width: 100%;
-  padding: 8px 14px;
+  padding: 7px 12px;
   background: linear-gradient(135deg, #9e4759, #7b2d3e);
   color: #ffffff;
   border: none;
   border-radius: 6px;
   font-family: var(--font-sans);
-  font-size: clamp(10px, 3cqw, 12px);
+  font-size: clamp(9.5px, 2.8cqw, 11px);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1662,7 +1682,7 @@ html, body {
   gap: 6px;
   box-shadow: 0 4px 14px rgba(123, 45, 62, 0.35);
   transition: all 0.2s;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .rsvp-submit-btn:hover {
